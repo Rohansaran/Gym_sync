@@ -11,6 +11,6 @@ const pool = new Pool({
 pool.connect((err) => {
     if (err) console.error('❌ Connection Error:', err.stack);
     else console.log('✅ Database Connected on Port 5000');
-});
+}); 
 
 module.exports = pool;
