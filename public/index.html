@@ -366,12 +366,29 @@
 
     <div id="auth-overlay">
         <div class="auth-box">
+            <div id="forgot-section" style="display:none; margin-top:15px;">
+    <input type="text" id="fp-username" placeholder="USERNAME">
+
+    <button class="btn btn-glow" style="width:100%; margin-top:10px;" onclick="requestResetToken()">
+        GET RESET TOKEN
+    </button>
+
+    <input type="text" id="fp-token" placeholder="RESET TOKEN">
+    <input type="password" id="fp-newpass" placeholder="NEW PASSWORD">
+
+    <button class="btn btn-glow" style="width:100%;" onclick="resetPassword()">
+        RESET PASSWORD
+    </button>
+</div>
             <i class="fas fa-dumbbell" style="font-size: 3rem; color: var(--neon-blue); margin-bottom: 20px;"></i>
             <h1 id="auth-title" style="color:var(--neon-blue); font-size:1.8rem; margin-bottom:25px;">GYMSYNC PRO</h1>
             <input type="text" id="username" placeholder="USERNAME">
             <input type="password" id="password" placeholder="PASSWORD">
             <button class="btn btn-glow" style="width:100%" onclick="handleAuth()" id="auth-btn">ENTER TERMINAL</button>
             <span class="toggle-auth" onclick="toggleMode()" id="toggle-link">New user? Create Bio-Profile</span>
+            <span class="toggle-auth" onclick="toggleForgot()" style="color:#ffd700;">
+    Forgot Password?
+</span>
             <p id="auth-msg" style="font-size: 0.9rem; margin-top:10px;"></p>
         </div>
     </div>
@@ -689,6 +706,67 @@
             }
         }
 
+        // ================= FORGOT PASSWORD =================
+
+function toggleForgot() {
+    const section = document.getElementById('forgot-section');
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+}
+
+async function requestResetToken() {
+    const username = document.getElementById('fp-username').value;
+
+    if (!username) {
+        alert("Enter username");
+        return;
+    }
+
+    try {
+        const res = await fetch('/forgot-password', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ username })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            alert("Your reset token: " + data.token);
+        } else {
+            alert("User not found");
+        }
+    } catch {
+        alert("Server error");
+    }
+}
+
+async function resetPassword() {
+    const token = document.getElementById('fp-token').value;
+    const newPassword = document.getElementById('fp-newpass').value;
+
+    if (!token || !newPassword) {
+        alert("Fill all fields");
+        return;
+    }
+
+    try {
+        const res = await fetch('/reset-password', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ token, newPassword })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            alert("Password reset successful!");
+        } else {
+            alert("Invalid or expired token");
+        }
+    } catch {
+        alert("Server error");
+    }
+}
         // BMI Calculation and Status
         function calculateBMI(weight, height) {
             if (!weight || !height) return null;
