@@ -9,11 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --neon-blue: #00f2ff;
@@ -21,6 +17,7 @@
             --neon-red: #ff3131;
             --neon-purple: #bf00ff;
             --neon-yellow: #ffd700;
+            --neon-orange: #ff8c00;
             --bg-dark: #05060a;
             --glass-bg: rgba(25, 28, 41, 0.85);
         }
@@ -39,24 +36,19 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background:
                 radial-gradient(circle at 20% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(191, 0, 255, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* AUTH OVERLAY */
         #auth-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: radial-gradient(circle at center, #0a0c1a 0%, #030405 100%);
             display: flex;
             justify-content: center;
@@ -82,7 +74,6 @@
             50% { box-shadow: 0 0 60px rgba(0, 242, 255, 0.5); }
         }
 
-        /* DASHBOARD COMPONENTS */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -98,17 +89,13 @@
         .glass-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.1), transparent);
             transition: left 0.6s;
         }
 
-        .glass-card:hover::before {
-            left: 100%;
-        }
+        .glass-card:hover::before { left: 100%; }
 
         .glass-card:hover {
             border-color: var(--neon-blue);
@@ -129,7 +116,6 @@
             font-weight: 700;
         }
 
-        /* Machine Cards */
         .machine-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -138,77 +124,34 @@
         }
 
         .machine-card {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s;
         }
 
-        .machine-card:hover {
-            transform: scale(1.05);
-            border-color: var(--neon-blue);
-        }
+        .machine-card:hover { transform: scale(1.05); border-color: var(--neon-blue); }
+        .machine-icon { font-size: 3rem; margin-bottom: 10px; }
+        .machine-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; color: var(--neon-blue); }
 
-        .machine-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .machine-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: var(--neon-blue);
-        }
-
-        .unit-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-top: 10px;
-        }
+        .unit-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
 
         .unit-btn {
-            padding: 8px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-family: 'Rajdhani', sans-serif;
+            padding: 8px; border: none; border-radius: 10px;
+            cursor: pointer; font-size: 0.8rem; font-weight: bold;
+            transition: all 0.3s; font-family: 'Rajdhani', sans-serif;
         }
 
-        .unit-available {
-            background: rgba(57, 255, 20, 0.2);
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
-        }
-
-        .unit-available:hover {
-            background: var(--neon-green);
-            color: #000;
-            transform: scale(1.05);
-        }
-
-        .unit-busy {
-            background: rgba(255, 49, 49, 0.2);
-            color: var(--neon-red);
-            border: 1px solid var(--neon-red);
-            cursor: not-allowed;
-        }
+        .unit-available { background: rgba(57, 255, 20, 0.2); color: var(--neon-green); border: 1px solid var(--neon-green); }
+        .unit-available:hover { background: var(--neon-green); color: #000; transform: scale(1.05); }
+        .unit-busy { background: rgba(255, 49, 49, 0.2); color: var(--neon-red); border: 1px solid var(--neon-red); cursor: not-allowed; }
 
         .btn {
             font-family: 'Orbitron', sans-serif;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
-            font-size: 0.9rem;
+            padding: 12px 24px; border: none; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s; font-weight: bold; font-size: 0.9rem;
         }
 
         .btn-glow {
@@ -217,23 +160,22 @@
             box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
         }
 
-        .btn-glow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.8);
+        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 242, 255, 0.8); }
+
+        .btn-diet {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
         }
 
+        .btn-diet:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255, 140, 0, 0.8); }
+
         input, select, textarea {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 15px;
-            border-radius: 12px;
-            color: #fff;
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 15px; border-radius: 12px;
+            color: #fff; width: 100%; box-sizing: border-box;
+            margin-bottom: 15px; font-size: 1rem; outline: none; transition: all 0.3s;
         }
 
         input:focus, select:focus, textarea:focus {
@@ -241,1098 +183,1350 @@
             box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
         }
 
-        .stat-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-        }
+        .stat-card { background: rgba(0,0,0,0.3); border-radius: 15px; padding: 15px; text-align: center; }
+        .stat-value { font-size: 2rem; font-family: 'Orbitron'; color: var(--neon-blue); }
+        .toggle-auth { color: var(--neon-blue); cursor: pointer; text-decoration: underline; font-size: 0.9rem; margin-top: 15px; display: block; }
 
-        .stat-value {
-            font-size: 2rem;
-            font-family: 'Orbitron';
-            color: var(--neon-blue);
-        }
-
-        .toggle-auth {
-            color: var(--neon-blue);
-            cursor: pointer;
-            text-decoration: underline;
-            font-size: 0.9rem;
-            margin-top: 15px;
-            display: block;
-        }
-
-        /* BMI Indicator */
-        .bmi-indicator {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-
+        .bmi-indicator { margin-top: 15px; padding: 10px; border-radius: 10px; text-align: center; font-weight: bold; }
         .bmi-underweight { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
         .bmi-normal { background: rgba(57, 255, 20, 0.2); color: var(--neon-green); }
         .bmi-overweight { background: rgba(255, 87, 34, 0.2); color: #ff5722; }
         .bmi-obese { background: rgba(255, 49, 49, 0.2); color: var(--neon-red); }
 
-        /* Chatbot Styles */
-        .chatbot-message {
-            margin-bottom: 15px;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .user-message {
-            text-align: right;
-        }
-
-        .user-message .message-content {
-            background: linear-gradient(135deg, var(--neon-blue), #0099ff);
-            color: #000;
-            display: inline-block;
-            padding: 10px 15px;
-            border-radius: 20px;
-            max-width: 80%;
-        }
-
-        .bot-message .message-content {
-            background: rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            padding: 10px 15px;
-            border-radius: 20px;
-            max-width: 80%;
-        }
-
-        .typing-indicator {
-            display: none;
-            padding: 10px;
-            color: var(--neon-blue);
-            font-style: italic;
-        }
+        .chatbot-message { margin-bottom: 15px; animation: slideIn 0.3s ease-out; }
+        .user-message { text-align: right; }
+        .user-message .message-content { background: linear-gradient(135deg, var(--neon-blue), #0099ff); color: #000; display: inline-block; padding: 10px 15px; border-radius: 20px; max-width: 80%; }
+        .bot-message .message-content { background: rgba(255,255,255,0.1); display: inline-block; padding: 10px 15px; border-radius: 20px; max-width: 80%; }
+        .typing-indicator { display: none; padding: 10px; color: var(--neon-blue); font-style: italic; }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin: 5px;
-        }
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin: 5px; }
+        .badge-success { background: rgba(57, 255, 20, 0.2); color: var(--neon-green); border: 1px solid var(--neon-green); }
 
-        .badge-success {
-            background: rgba(57, 255, 20, 0.2);
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
-        }
-
-        /* Timer Display */
-        #timer-display {
-            font-family: 'Orbitron', monospace;
-            font-size: 3.5rem;
-            font-weight: bold;
-            letter-spacing: 5px;
-        }
+        #timer-display { font-family: 'Orbitron', monospace; font-size: 3.5rem; font-weight: bold; letter-spacing: 5px; }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); text-shadow: 0 0 20px var(--neon-blue); }
         }
 
-        .timer-running {
-            animation: pulse 1s infinite;
-            color: var(--neon-green);
+        .timer-running { animation: pulse 1s infinite; color: var(--neon-green); }
+        .vs-badge { font-size: 1.5rem; font-weight: bold; color: var(--neon-blue); }
+
+        /* ===== DIET RECOMMENDATION STYLES ===== */
+        .diet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        .vs-badge {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--neon-blue);
+        .diet-header h2 {
+            margin: 0;
         }
+
+        .diet-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .diet-stat {
+            background: rgba(0,0,0,0.4);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s;
+        }
+
+        .diet-stat:hover {
+            border-color: var(--neon-orange);
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
+        }
+
+        .diet-stat-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .diet-stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .diet-stat-value.calories { color: var(--neon-orange); }
+        .diet-stat-value.protein { color: #ff6b6b; }
+        .diet-stat-value.carbs { color: var(--neon-yellow); }
+        .diet-stat-value.fat { color: #a8e6cf; }
+        .diet-stat-value.water { color: var(--neon-blue); }
+        .diet-stat-value.tdee { color: var(--neon-purple); }
+
+        .macro-bar-wrap {
+            margin-bottom: 20px;
+        }
+
+        .macro-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: #aaa;
+        }
+
+        .macro-bar {
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .macro-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1.2s ease;
+        }
+
+        .macro-bar-fill.protein { background: linear-gradient(90deg, #ff6b6b, #ee0979); }
+        .macro-bar-fill.carbs { background: linear-gradient(90deg, #ffd700, #ffa500); }
+        .macro-bar-fill.fat { background: linear-gradient(90deg, #a8e6cf, #3d9970); }
+
+        .meal-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .meal-tab {
+            padding: 8px 18px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .meal-tab.active, .meal-tab:hover {
+            background: linear-gradient(135deg, var(--neon-orange), #ff4500);
+            border-color: var(--neon-orange);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+        }
+
+        .meal-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .meal-option-card {
+            background: rgba(0,0,0,0.35);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meal-option-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            opacity: 0;
+            background: linear-gradient(135deg, rgba(255,140,0,0.1), transparent);
+            transition: opacity 0.3s;
+        }
+
+        .meal-option-card:hover::after { opacity: 1; }
+        .meal-option-card:hover { border-color: var(--neon-orange); transform: translateY(-3px); }
+
+        .meal-option-card.selected {
+            border-color: var(--neon-orange);
+            background: rgba(255, 140, 0, 0.1);
+        }
+
+        .meal-emoji { font-size: 2.2rem; margin-bottom: 8px; }
+
+        .meal-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .meal-macros {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .meal-macro-pill {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .pill-cal { background: rgba(255,140,0,0.2); color: var(--neon-orange); }
+        .pill-p { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+        .pill-c { background: rgba(255,215,0,0.2); color: var(--neon-yellow); }
+        .pill-f { background: rgba(168,230,207,0.2); color: #a8e6cf; }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 12px;
+            border-left: 3px solid var(--neon-orange);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+            transition: all 0.3s;
+        }
+
+        .tip-item:hover { background: rgba(255,140,0,0.1); color: #fff; }
+
+        .tip-icon { color: var(--neon-orange); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+
+        .diet-loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--neon-orange);
+        }
+
+        .diet-loading i { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+
+        .diet-empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: #555;
+        }
+
+        .diet-empty i { font-size: 3rem; margin-bottom: 15px; color: #333; display: block; }
+
+        .diet-empty p { font-size: 1rem; }
+
+        .diet-section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--neon-orange);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bmi-badge-diet {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .bmi-badge-underweight { background: rgba(255,193,7,0.2); color: #ffc107; border: 1px solid #ffc107; }
+        .bmi-badge-normal { background: rgba(57,255,20,0.2); color: var(--neon-green); border: 1px solid var(--neon-green); }
+        .bmi-badge-overweight { background: rgba(255,87,34,0.2); color: #ff5722; border: 1px solid #ff5722; }
+        .bmi-badge-obese { background: rgba(255,49,49,0.2); color: var(--neon-red); border: 1px solid var(--neon-red); }
+
+        @keyframes dietFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .diet-content { animation: dietFadeIn 0.5s ease-out; }
     </style>
 </head>
 <body>
 
-    <div id="auth-overlay">
-        <div class="auth-box">
-            <div id="forgot-section" style="display:none; margin-top:15px;">
-    <input type="text" id="fp-username" placeholder="USERNAME">
-
-    <button class="btn btn-glow" style="width:100%; margin-top:10px;" onclick="requestResetToken()">
-        GET RESET TOKEN
-    </button>
-
-    <input type="text" id="fp-token" placeholder="RESET TOKEN">
-    <input type="password" id="fp-newpass" placeholder="NEW PASSWORD">
-
-    <button class="btn btn-glow" style="width:100%;" onclick="resetPassword()">
-        RESET PASSWORD
-    </button>
+<div id="auth-overlay">
+    <div class="auth-box">
+        <div id="forgot-section" style="display:none; margin-top:15px;">
+            <input type="text" id="fp-username" placeholder="USERNAME">
+            <button class="btn btn-glow" style="width:100%; margin-top:10px;" onclick="requestResetToken()">GET RESET TOKEN</button>
+            <input type="text" id="fp-token" placeholder="RESET TOKEN">
+            <input type="password" id="fp-newpass" placeholder="NEW PASSWORD">
+            <button class="btn btn-glow" style="width:100%;" onclick="resetPassword()">RESET PASSWORD</button>
+        </div>
+        <i class="fas fa-dumbbell" style="font-size: 3rem; color: var(--neon-blue); margin-bottom: 20px;"></i>
+        <h1 id="auth-title" style="color:var(--neon-blue); font-size:1.8rem; margin-bottom:25px;">GYMSYNC PRO</h1>
+        <input type="text" id="username" placeholder="USERNAME">
+        <input type="password" id="password" placeholder="PASSWORD">
+        <button class="btn btn-glow" style="width:100%" onclick="handleAuth()" id="auth-btn">ENTER TERMINAL</button>
+        <span class="toggle-auth" onclick="toggleMode()" id="toggle-link">New user? Create Bio-Profile</span>
+        <span class="toggle-auth" onclick="toggleForgot()" style="color:#ffd700;">Forgot Password?</span>
+        <p id="auth-msg" style="font-size: 0.9rem; margin-top:10px;"></p>
+    </div>
 </div>
-            <i class="fas fa-dumbbell" style="font-size: 3rem; color: var(--neon-blue); margin-bottom: 20px;"></i>
-            <h1 id="auth-title" style="color:var(--neon-blue); font-size:1.8rem; margin-bottom:25px;">GYMSYNC PRO</h1>
-            <input type="text" id="username" placeholder="USERNAME">
-            <input type="password" id="password" placeholder="PASSWORD">
-            <button class="btn btn-glow" style="width:100%" onclick="handleAuth()" id="auth-btn">ENTER TERMINAL</button>
-            <span class="toggle-auth" onclick="toggleMode()" id="toggle-link">New user? Create Bio-Profile</span>
-            <span class="toggle-auth" onclick="toggleForgot()" style="color:#ffd700;">
-    Forgot Password?
-</span>
-            <p id="auth-msg" style="font-size: 0.9rem; margin-top:10px;"></p>
-        </div>
-    </div>
 
-    <div id="dashboard" style="display:none;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; flex-wrap: wrap; gap: 15px;">
-            <h1 style="font-size: 2rem; margin:0;">
-                <i class="fas fa-crown"></i> GYMSYNC <span style="color:var(--neon-blue)">PRO</span>
-            </h1>
-            <div>
-                <span id="user-name-display" style="margin-right: 20px; color: var(--neon-green); font-weight: bold;">
-                    <i class="fas fa-user-astronaut"></i> Loading...
-                </span>
-                <button onclick="location.href='/logout'" class="btn" style="background: rgba(255,49,49,0.2); border:1px solid var(--neon-red); color:var(--neon-red);">
-                    <i class="fas fa-power-off"></i> TERMINATE
-                </button>
-            </div>
-        </div>
-
-        <!-- Stats Overview -->
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 20px;">
-            <div class="glass-card" style="text-align: center;">
-                <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--neon-blue);"></i>
-                <h3>Level</h3>
-                <div class="stat-value" id="level-value">1</div>
-            </div>
-            <div class="glass-card" style="text-align: center;">
-                <i class="fas fa-star" style="font-size: 2rem; color: gold;"></i>
-                <h3>Points</h3>
-                <div class="stat-value" id="points-value">0</div>
-            </div>
-            <div class="glass-card" style="text-align: center;">
-                <i class="fas fa-heartbeat" style="font-size: 2rem; color: var(--neon-red);"></i>
-                <h3>BMI</h3>
-                <div class="stat-value" id="bmi-value">--</div>
-                <div id="bmi-status" class="bmi-indicator" style="display: none;"></div>
-            </div>
-            <div class="glass-card" style="text-align: center;">
-                <i class="fas fa-tint" style="font-size: 2rem; color: var(--neon-blue);"></i>
-                <h3>Water Today</h3>
-                <div class="stat-value" id="water-today">0L</div>
-            </div>
-        </div>
-
-        <!-- Profile Setup Card -->
-        <div class="glass-card">
-            <h2><i class="fas fa-user-edit"></i> PERSONAL INFORMATION</h2>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div style="flex: 1;">
-                    <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
-                    <input type="number" id="weight-input" placeholder="Enter your weight in kg" step="0.1">
-                </div>
-                <div style="flex: 1;">
-                    <label><i class="fas fa-ruler"></i> Height (cm)</label>
-                    <input type="number" id="height-input" placeholder="Enter your height in cm">
-                </div>
-                <div style="flex: 1;">
-                    <label><i class="fas fa-bullseye"></i> Fitness Goal</label>
-                    <select id="goal-input">
-                        <option>Weight Loss</option>
-                        <option>Muscle Gain</option>
-                        <option>Endurance</option>
-                        <option>Strength</option>
-                        <option>Maintenance</option>
-                    </select>
-                </div>
-            </div>
-            <button class="btn btn-glow" style="margin-top: 15px; width: 100%;" onclick="updateProfile()">
-                <i class="fas fa-save"></i> SAVE PROFILE
+<div id="dashboard" style="display:none;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; flex-wrap: wrap; gap: 15px;">
+        <h1 style="font-size: 2rem; margin:0;">
+            <i class="fas fa-crown"></i> GYMSYNC <span style="color:var(--neon-blue)">PRO</span>
+        </h1>
+        <div>
+            <span id="user-name-display" style="margin-right: 20px; color: var(--neon-green); font-weight: bold;">
+                <i class="fas fa-user-astronaut"></i> Loading...
+            </span>
+            <button onclick="location.href='/logout'" class="btn" style="background: rgba(255,49,49,0.2); border:1px solid var(--neon-red); color:var(--neon-red);">
+                <i class="fas fa-power-off"></i> TERMINATE
             </button>
-            <div id="profile-message" style="margin-top: 10px; text-align: center; color: var(--neon-green); display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 20px;">
+        <div class="glass-card" style="text-align: center;">
+            <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--neon-blue);"></i>
+            <h3>Level</h3>
+            <div class="stat-value" id="level-value">1</div>
+        </div>
+        <div class="glass-card" style="text-align: center;">
+            <i class="fas fa-star" style="font-size: 2rem; color: gold;"></i>
+            <h3>Points</h3>
+            <div class="stat-value" id="points-value">0</div>
+        </div>
+        <div class="glass-card" style="text-align: center;">
+            <i class="fas fa-heartbeat" style="font-size: 2rem; color: var(--neon-red);"></i>
+            <h3>BMI</h3>
+            <div class="stat-value" id="bmi-value">--</div>
+            <div id="bmi-status" class="bmi-indicator" style="display: none;"></div>
+        </div>
+        <div class="glass-card" style="text-align: center;">
+            <i class="fas fa-tint" style="font-size: 2rem; color: var(--neon-blue);"></i>
+            <h3>Water Today</h3>
+            <div class="stat-value" id="water-today">0L</div>
+        </div>
+    </div>
+
+    <!-- Profile Setup Card -->
+    <div class="glass-card">
+        <h2><i class="fas fa-user-edit"></i> PERSONAL INFORMATION</h2>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1;">
+                <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
+                <input type="number" id="weight-input" placeholder="Enter your weight in kg" step="0.1">
+            </div>
+            <div style="flex: 1;">
+                <label><i class="fas fa-ruler"></i> Height (cm)</label>
+                <input type="number" id="height-input" placeholder="Enter your height in cm">
+            </div>
+            <div style="flex: 1;">
+                <label><i class="fas fa-bullseye"></i> Fitness Goal</label>
+                <select id="goal-input">
+                    <option>Weight Loss</option>
+                    <option>Muscle Gain</option>
+                    <option>Endurance</option>
+                    <option>Strength</option>
+                    <option>Maintenance</option>
+                </select>
+            </div>
+            <div style="flex: 1; min-width: 180px;">
+                <label><i class="fas fa-leaf"></i> Diet Preference</label>
+                <div style="display:flex; gap:10px; margin-top:8px;">
+                    <button id="btn-veg" onclick="setDietPref('veg')" style="
+                        flex:1; padding:11px 8px; border-radius:12px;
+                        border:2px solid #39ff14;
+                        background:rgba(57,255,20,0.08); color:#39ff14;
+                        font-family:'Orbitron',sans-serif; font-size:0.75rem;
+                        cursor:pointer; transition:all 0.3s; font-weight:700; letter-spacing:1px;">
+                        🌱 VEG
+                    </button>
+                    <button id="btn-non-veg" onclick="setDietPref('non-veg')" style="
+                        flex:1; padding:11px 8px; border-radius:12px;
+                        border:2px solid #ff3131;
+                        background:rgba(255,49,49,0.35); color:#fff;
+                        font-family:'Orbitron',sans-serif; font-size:0.75rem;
+                        cursor:pointer; transition:all 0.3s; font-weight:700; letter-spacing:1px;
+                        box-shadow: 0 0 12px rgba(255,49,49,0.4);">
+                        🍖 NON-VEG
+                    </button>
+                </div>
+                <input type="hidden" id="diet-preference-input" value="non-veg">
+            </div>
+        </div>
+        <button class="btn btn-glow" style="margin-top: 15px; width: 100%;" onclick="updateProfile()">
+            <i class="fas fa-save"></i> SAVE PROFILE
+        </button>
+        <div id="profile-message" style="margin-top: 10px; text-align: center; color: var(--neon-green); display: none;"></div>
+    </div>
+
+    <!-- ===== DIET RECOMMENDATION CARD ===== -->
+    <div class="glass-card" style="border-color: rgba(255,140,0,0.3);">
+        <div class="diet-header">
+            <h2 style="color: var(--neon-orange);">
+                <i class="fas fa-utensils"></i> DIET COMMAND CENTER
+            </h2>
+            <button class="btn btn-diet" onclick="loadDietRecommendation()" id="diet-refresh-btn">
+                <i class="fas fa-sync-alt"></i> GET MY PLAN
+            </button>
         </div>
 
-        <!-- Machines Management System -->
+        <!-- Empty state (before first load) -->
+        <div id="diet-empty-state" class="diet-empty">
+            <i class="fas fa-bowl-food"></i>
+            <p>Save your profile (including <strong style="color:#39ff14">🌱 Veg</strong> or <strong style="color:#ff6b6b">🍖 Non-Veg</strong> preference), then click <strong style="color: var(--neon-orange);">GET MY PLAN</strong> to receive a personalized diet plan based on your BMI and fitness goal.</p>
+        </div>
+
+        <!-- Loading state -->
+        <div id="diet-loading" class="diet-loading" style="display:none;">
+            <i class="fas fa-brain fa-spin"></i>
+            <p>Analyzing your BMI & goal...</p>
+        </div>
+
+        <!-- Diet Content (populated dynamically) -->
+        <div id="diet-content" style="display:none;" class="diet-content">
+
+            <!-- Top stats bar -->
+            <div class="diet-summary-grid" id="diet-stats-grid"></div>
+
+            <!-- Macro breakdown -->
+            <div style="margin-bottom: 25px;">
+                <div class="diet-section-title"><i class="fas fa-chart-pie"></i> Macro Breakdown</div>
+                <div id="diet-macro-bars"></div>
+            </div>
+
+            <!-- Meal plan tabs -->
+            <div style="margin-bottom: 25px;">
+                <div class="diet-section-title"><i class="fas fa-calendar-day"></i> Daily Meal Plan</div>
+                <div class="meal-tabs">
+                    <button class="meal-tab active" onclick="switchMealTab('breakfast', this)">🌅 Breakfast</button>
+                    <button class="meal-tab" onclick="switchMealTab('lunch', this)">☀️ Lunch</button>
+                    <button class="meal-tab" onclick="switchMealTab('dinner', this)">🌙 Dinner</button>
+                    <button class="meal-tab" onclick="switchMealTab('snacks', this)">🍎 Snacks</button>
+                </div>
+                <div class="meal-options" id="meal-options-container"></div>
+            </div>
+
+            <!-- Tips -->
+            <div>
+                <div class="diet-section-title"><i class="fas fa-lightbulb"></i> Personalized Tips</div>
+                <div class="tips-grid" id="diet-tips-grid"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END DIET RECOMMENDATION ===== -->
+
+    <!-- Machines Management System -->
+    <div class="glass-card">
+        <h2><i class="fas fa-microchip"></i> MACHINE CONTROL CENTER</h2>
+        <div class="machine-grid" id="machines-container"></div>
+    </div>
+
+    <div class="grid">
+        <!-- Food Comparator -->
         <div class="glass-card">
-            <h2><i class="fas fa-microchip"></i> MACHINE CONTROL CENTER</h2>
-            <div class="machine-grid" id="machines-container"></div>
+            <h2><i class="fas fa-balance-scale"></i> NUTRITION COMPARATOR</h2>
+            <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 15px; align-items: center;">
+                <div>
+                    <i class="fas fa-utensils" style="font-size: 1.5rem; color: var(--neon-blue);"></i>
+                    <input type="text" id="food1" placeholder="Food Item 1" style="margin-top: 10px;">
+                    <div id="food1-result" style="margin-top: 10px;"></div>
+                </div>
+                <div class="vs-badge">VS</div>
+                <div>
+                    <i class="fas fa-utensils" style="font-size: 1.5rem; color: var(--neon-green);"></i>
+                    <input type="text" id="food2" placeholder="Food Item 2" style="margin-top: 10px;">
+                    <div id="food2-result" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+            <button class="btn btn-glow" style="width: 100%; margin-top: 20px;" onclick="compareFoods()">
+                <i class="fas fa-chart-line"></i> COMPARE & ANALYZE
+            </button>
+            <div id="comparison-result" style="margin-top: 20px; padding: 15px; border-radius: 15px; background: rgba(0,0,0,0.3);"></div>
         </div>
 
-        <div class="grid">
-            <!-- Food Comparator -->
-            <div class="glass-card">
-                <h2><i class="fas fa-balance-scale"></i> NUTRITION COMPARATOR</h2>
-                <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 15px; align-items: center;">
-                    <div>
-                        <i class="fas fa-utensils" style="font-size: 1.5rem; color: var(--neon-blue);"></i>
-                        <input type="text" id="food1" placeholder="Food Item 1" style="margin-top: 10px;">
-                        <div id="food1-result" style="margin-top: 10px;"></div>
-                    </div>
-                    <div class="vs-badge">VS</div>
-                    <div>
-                        <i class="fas fa-utensils" style="font-size: 1.5rem; color: var(--neon-green);"></i>
-                        <input type="text" id="food2" placeholder="Food Item 2" style="margin-top: 10px;">
-                        <div id="food2-result" style="margin-top: 10px;"></div>
-                    </div>
-                </div>
-                <button class="btn btn-glow" style="width: 100%; margin-top: 20px;" onclick="compareFoods()">
-                    <i class="fas fa-chart-line"></i> COMPARE & ANALYZE
-                </button>
-                <div id="comparison-result" style="margin-top: 20px; padding: 15px; border-radius: 15px; background: rgba(0,0,0,0.3);"></div>
-            </div>
-
-            <!-- Water Tracker -->
-            <div class="glass-card" style="text-align:center">
-                <h2><i class="fas fa-tint"></i> BIO-FUEL (H2O)</h2>
-                <div id="water" style="font-size:3rem; color:var(--neon-blue); margin:10px;">0 <small style="color:#fff">GL</small></div>
-                <button onclick="addWater()" style="background:none; border:none; font-size:3rem; cursor:pointer;">
-                    <i class="fas fa-plus-circle" style="color: var(--neon-blue); filter: drop-shadow(0 0 10px var(--neon-blue));"></i>
-                </button>
-                <div style="margin-top: 15px;">
-                    <small>Goal: 2L/day (8 glasses)</small>
-                    <progress id="water-progress" value="0" max="8" style="width: 100%; height: 12px; border-radius: 10px;"></progress>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid">
-            <!-- Workout Generator -->
-            <div class="glass-card">
-                <h2><i class="fas fa-dumbbell"></i> WORKOUT GENERATOR</h2>
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <select id="workout-goal" style="flex: 1;">
-                        <option>🔥 Weight Loss</option>
-                        <option>💪 Muscle Gain</option>
-                        <option>🏃 Endurance</option>
-                        <option>⚡ Strength</option>
-                    </select>
-                    <button class="btn btn-glow" onclick="generateWorkout()">Generate</button>
-                </div>
-                <div id="workout-plan" style="display: none;">
-                    <h3 id="workout-name" style="color: var(--neon-blue);"></h3>
-                    <pre id="workout-exercises" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; white-space: pre-wrap;"></pre>
-                    <button class="btn btn-glow" onclick="startWorkout()"><i class="fas fa-play"></i> Start Workout</button>
-                </div>
-            </div>
-
-            <!-- Workout Timer -->
-            <div class="glass-card">
-                <h2><i class="fas fa-hourglass-half"></i> WORKOUT TIMER</h2>
-                <div style="text-align: center;">
-                    <div id="timer-display" style="font-size: 3.5rem; font-family: monospace; margin: 20px; font-weight: bold;">30:00</div>
-                    <div style="display: flex; gap: 10px; justify-content: center;">
-                        <button class="btn btn-glow" onclick="startTimer()"><i class="fas fa-play"></i> Start</button>
-                        <button class="btn" onclick="pauseTimer()" style="background: rgba(255,255,255,0.2);"><i class="fas fa-pause"></i> Pause</button>
-                        <button class="btn" onclick="resetTimer()" style="background: rgba(255,255,255,0.2);"><i class="fas fa-redo"></i> Reset</button>
-                    </div>
-                    <select id="timer-preset" style="margin-top: 15px;" onchange="resetTimer()">
-                        <option value="300">5 min</option>
-                        <option value="600">10 min</option>
-                        <option value="900">15 min</option>
-                        <option value="1800" selected>30 min</option>
-                        <option value="2700">45 min</option>
-                        <option value="3600">60 min</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid">
-            <!-- Leaderboard -->
-            <div class="glass-card">
-                <h2><i class="fas fa-trophy"></i> LEADERBOARD</h2>
-                <div id="leaderboard-list" style="max-height: 400px; overflow-y: auto;"></div>
-            </div>
-
-            <!-- Weekly Performance -->
-            <div class="glass-card">
-                <h2><i class="fas fa-chart-line"></i> WEEKLY PERFORMANCE</h2>
-                <div style="height:350px"><canvas id="perfChart"></canvas></div>
-            </div>
-        </div>
-
-        <div class="grid">
-            <!-- Class Booking -->
-            <div class="glass-card">
-                <h2><i class="fas fa-calendar-alt"></i> UPCOMING CLASSES</h2>
-                <div id="class-list" style="max-height: 400px; overflow-y: auto;"></div>
-            </div>
-
-            <!-- AI Chatbot -->
-            <div class="glass-card">
-                <h2><i class="fas fa-robot"></i> AI FITNESS COACH</h2>
-                <div id="chat-messages" style="height: 350px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
-                    <div class="bot-message">
-                        <div class="message-content">
-                            👋 Hi! I'm your AI Fitness Coach! I can help you with:<br>
-                            • Workout tips and exercises<br>
-                            • Nutrition advice<br>
-                            • Motivation and guidance<br>
-                            • Answer fitness questions<br><br>
-                            Ask me anything about fitness! 💪
-                        </div>
-                    </div>
-                </div>
-                <div class="typing-indicator" id="typing-indicator">
-                    <i class="fas fa-brain"></i> AI Coach is thinking...
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <input type="text" id="chat-input" placeholder="Ask your AI fitness coach..." style="margin-bottom: 0;" onkeypress="handleChatKeyPress(event)">
-                    <button class="btn btn-glow" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i> Send</button>
-                </div>
+        <!-- Water Tracker -->
+        <div class="glass-card" style="text-align:center">
+            <h2><i class="fas fa-tint"></i> BIO-FUEL (H2O)</h2>
+            <div id="water" style="font-size:3rem; color:var(--neon-blue); margin:10px;">0 <small style="color:#fff">GL</small></div>
+            <button onclick="addWater()" style="background:none; border:none; font-size:3rem; cursor:pointer;">
+                <i class="fas fa-plus-circle" style="color: var(--neon-blue); filter: drop-shadow(0 0 10px var(--neon-blue));"></i>
+            </button>
+            <div style="margin-top: 15px;">
+                <small>Goal: 2L/day (8 glasses)</small>
+                <progress id="water-progress" value="0" max="8" style="width: 100%; height: 12px; border-radius: 10px;"></progress>
             </div>
         </div>
     </div>
 
-    <script>
-        let isLoginMode = true;
-        let waterCount = 0;
-        let currentUsername = '';
-        let timerInterval;
-        let timerSeconds = 1800; // Default 30 minutes
-        let timerRunning = false;
-        let socket;
-        
-        // Machine data structure
-        const machines = [
-            { id: 1, name: "TREADMILL", icon: "fas fa-running", units: 4, busyUnits: [] },
-            { id: 2, name: "CROSSFIT", icon: "fas fa-dumbbell", units: 4, busyUnits: [] },
-            { id: 3, name: "BENCH PRESS", icon: "fas fa-weight-hanging", units: 4, busyUnits: [] },
-            { id: 4, name: "ROWING", icon: "fas fa-water", units: 4, busyUnits: [] },
-            { id: 5, name: "CABLE", icon: "fas fa-cable-car", units: 4, busyUnits: [] }
-        ];
+    <div class="grid">
+        <!-- Workout Generator -->
+        <div class="glass-card">
+            <h2><i class="fas fa-dumbbell"></i> WORKOUT GENERATOR</h2>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <select id="workout-goal" style="flex: 1;">
+                    <option>🔥 Weight Loss</option>
+                    <option>💪 Muscle Gain</option>
+                    <option>🏃 Endurance</option>
+                    <option>⚡ Strength</option>
+                </select>
+                <button class="btn btn-glow" onclick="generateWorkout()">Generate</button>
+            </div>
+            <div id="workout-plan" style="display: none;">
+                <h3 id="workout-name" style="color: var(--neon-blue);"></h3>
+                <pre id="workout-exercises" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; white-space: pre-wrap;"></pre>
+                <button class="btn btn-glow" onclick="startWorkout()"><i class="fas fa-play"></i> Start Workout</button>
+            </div>
+        </div>
 
-        function toggleMode() {
-            isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? "GYMSYNC LOGIN" : "CREATE PROFILE";
-            document.getElementById('auth-btn').innerHTML = isLoginMode ? '<i class="fas fa-sign-in-alt"></i> ENTER TERMINAL' : '<i class="fas fa-user-plus"></i> REGISTER PROFILE';
-            document.getElementById('toggle-link').innerText = isLoginMode ? "New user? Create Bio-Profile" : "Existing user? Access Terminal";
-            document.getElementById('auth-msg').innerText = "";
-        }
+        <!-- Workout Timer -->
+        <div class="glass-card">
+            <h2><i class="fas fa-hourglass-half"></i> WORKOUT TIMER</h2>
+            <div style="text-align: center;">
+                <div id="timer-display" style="font-size: 3.5rem; font-family: monospace; margin: 20px; font-weight: bold;">30:00</div>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button class="btn btn-glow" onclick="startTimer()"><i class="fas fa-play"></i> Start</button>
+                    <button class="btn" onclick="pauseTimer()" style="background: rgba(255,255,255,0.2);"><i class="fas fa-pause"></i> Pause</button>
+                    <button class="btn" onclick="resetTimer()" style="background: rgba(255,255,255,0.2);"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+                <select id="timer-preset" style="margin-top: 15px;" onchange="resetTimer()">
+                    <option value="300">5 min</option>
+                    <option value="600">10 min</option>
+                    <option value="900">15 min</option>
+                    <option value="1800" selected>30 min</option>
+                    <option value="2700">45 min</option>
+                    <option value="3600">60 min</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
-        async function handleAuth() {
-            const u = document.getElementById('username').value;
-            const p = document.getElementById('password').value;
-            const msg = document.getElementById('auth-msg');
-            
-            if (!u || !p) {
-                msg.style.color = 'var(--neon-red)';
-                msg.innerText = "Error: Fields cannot be empty.";
-                return;
-            }
+    <div class="grid">
+        <!-- Leaderboard -->
+        <div class="glass-card">
+            <h2><i class="fas fa-trophy"></i> LEADERBOARD</h2>
+            <div id="leaderboard-list" style="max-height: 400px; overflow-y: auto;"></div>
+        </div>
 
-            const route = isLoginMode ? '/login' : '/register';
-            try {
-                const res = await fetch(route, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ username: u, password: p })
-                });
+        <!-- Weekly Performance -->
+        <div class="glass-card">
+            <h2><i class="fas fa-chart-line"></i> WEEKLY PERFORMANCE</h2>
+            <div style="height:350px"><canvas id="perfChart"></canvas></div>
+        </div>
+    </div>
 
-                const data = await res.json();
-                if (data.success) {
-                    if (isLoginMode) {
-                        currentUsername = data.username || u;
-                        document.getElementById('user-name-display').innerHTML = `<i class="fas fa-user-astronaut"></i> ${currentUsername}`;
-                        document.getElementById('auth-overlay').style.opacity = '0';
-                        setTimeout(() => {
-                            document.getElementById('auth-overlay').style.display = 'none';
-                            document.getElementById('dashboard').style.display = 'block';
-                            initDashboard();
-                        }, 500);
-                    } else {
-                        alert("✅ Bio-Profile Registered! Please login.");
-                        toggleMode();
-                    }
-                } else {
-                    msg.style.color = 'var(--neon-red)';
-                    msg.innerText = data.message || "Access Denied.";
-                }
-            } catch (err) {
-                msg.innerText = "Server Connection Failed.";
-            }
-        }
+    <div class="grid">
+        <!-- Class Booking -->
+        <div class="glass-card">
+            <h2><i class="fas fa-calendar-alt"></i> UPCOMING CLASSES</h2>
+            <div id="class-list" style="max-height: 400px; overflow-y: auto;"></div>
+        </div>
 
-        function renderMachines() {
-            const container = document.getElementById('machines-container');
-            container.innerHTML = machines.map(machine => `
-                <div class="machine-card">
-                    <div class="machine-icon"><i class="${machine.icon}"></i></div>
-                    <div class="machine-name">${machine.name}</div>
-                    <div class="unit-buttons">
-                        ${Array(machine.units).fill(0).map((_, i) => `
-                            <button class="unit-btn ${machine.busyUnits.includes(i+1) ? 'unit-busy' : 'unit-available'}" 
-                                    onclick="toggleMachineUnit(${machine.id}, ${i+1})"
-                                    ${machine.busyUnits.includes(i+1) ? 'disabled' : ''}>
-                                Unit ${i+1}<br>
-                                ${machine.busyUnits.includes(i+1) ? '🔴 BUSY' : '🟢 AVAILABLE'}
-                            </button>
-                        `).join('')}
+        <!-- AI Chatbot -->
+        <div class="glass-card">
+            <h2><i class="fas fa-robot"></i> AI FITNESS COACH</h2>
+            <div id="chat-messages" style="height: 350px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
+                <div class="bot-message">
+                    <div class="message-content">
+                        👋 Hi! I'm your AI Fitness Coach! I can help you with:<br>
+                        • Workout tips and exercises<br>
+                        • Nutrition advice<br>
+                        • Motivation and guidance<br>
+                        • Answer fitness questions<br><br>
+                        Ask me anything about fitness! 💪
                     </div>
                 </div>
-            `).join('');
-        }
+            </div>
+            <div class="typing-indicator" id="typing-indicator">
+                <i class="fas fa-brain"></i> AI Coach is thinking...
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="chat-input" placeholder="Ask your AI fitness coach..." style="margin-bottom: 0;" onkeypress="handleChatKeyPress(event)">
+                <button class="btn btn-glow" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        function toggleMachineUnit(machineId, unitNumber) {
-            const machine = machines.find(m => m.id === machineId);
-            if (machine.busyUnits.includes(unitNumber)) {
-                machine.busyUnits = machine.busyUnits.filter(u => u !== unitNumber);
-            } else {
-                machine.busyUnits.push(unitNumber);
-            }
-            renderMachines();
-            updateMachineStatus(machineId, unitNumber, machine.busyUnits.includes(unitNumber) ? 'busy' : 'available');
-        }
+<script>
+    let isLoginMode = true;
+    let waterCount = 0;
+    let currentUsername = '';
+    let timerInterval;
+    let timerSeconds = 1800;
+    let timerRunning = false;
+    let socket;
+    let currentDietData = null;
+    let activeMealTab = 'breakfast';
+    let currentDietPref = 'non-veg';
 
-        async function updateMachineStatus(machineId, unitNumber, status) {
-            try {
-                await fetch('/update-machine', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ id: machineId, unit: unitNumber, status: status })
-                });
-            } catch (err) {
-                console.error('Failed to update machine status');
-            }
-        }
+    // ===== DIET PREFERENCE TOGGLE =====
+    function setDietPref(pref) {
+        currentDietPref = pref;
+        document.getElementById('diet-preference-input').value = pref;
 
-        // ================= FORGOT PASSWORD =================
+        const btnVeg = document.getElementById('btn-veg');
+        const btnNonVeg = document.getElementById('btn-non-veg');
 
-function toggleForgot() {
-    const section = document.getElementById('forgot-section');
-    section.style.display = section.style.display === 'none' ? 'block' : 'none';
-}
-
-async function requestResetToken() {
-    const username = document.getElementById('fp-username').value;
-
-    if (!username) {
-        alert("Enter username");
-        return;
-    }
-
-    try {
-        const res = await fetch('/forgot-password', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ username })
-        });
-
-        const data = await res.json();
-
-        if (data.success) {
-            alert("Your reset token: " + data.token);
+        if (pref === 'veg') {
+            btnVeg.style.background = 'rgba(57,255,20,0.35)';
+            btnVeg.style.color = '#fff';
+            btnVeg.style.boxShadow = '0 0 14px rgba(57,255,20,0.5)';
+            btnNonVeg.style.background = 'rgba(255,49,49,0.08)';
+            btnNonVeg.style.color = '#ff3131';
+            btnNonVeg.style.boxShadow = 'none';
         } else {
-            alert("User not found");
+            btnNonVeg.style.background = 'rgba(255,49,49,0.35)';
+            btnNonVeg.style.color = '#fff';
+            btnNonVeg.style.boxShadow = '0 0 12px rgba(255,49,49,0.4)';
+            btnVeg.style.background = 'rgba(57,255,20,0.08)';
+            btnVeg.style.color = '#39ff14';
+            btnVeg.style.boxShadow = 'none';
         }
-    } catch {
-        alert("Server error");
-    }
-}
-
-async function resetPassword() {
-    const token = document.getElementById('fp-token').value;
-    const newPassword = document.getElementById('fp-newpass').value;
-
-    if (!token || !newPassword) {
-        alert("Fill all fields");
-        return;
     }
 
-    try {
-        const res = await fetch('/reset-password', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ token, newPassword })
-        });
+    const machines = [
+        { id: 1, name: "TREADMILL", icon: "fas fa-running", units: 4, busyUnits: [] },
+        { id: 2, name: "CROSSFIT", icon: "fas fa-dumbbell", units: 4, busyUnits: [] },
+        { id: 3, name: "BENCH PRESS", icon: "fas fa-weight-hanging", units: 4, busyUnits: [] },
+        { id: 4, name: "ROWING", icon: "fas fa-water", units: 4, busyUnits: [] },
+        { id: 5, name: "CABLE", icon: "fas fa-cable-car", units: 4, busyUnits: [] }
+    ];
 
-        const data = await res.json();
+    function toggleMode() {
+        isLoginMode = !isLoginMode;
+        document.getElementById('auth-title').innerText = isLoginMode ? "GYMSYNC LOGIN" : "CREATE PROFILE";
+        document.getElementById('auth-btn').innerHTML = isLoginMode ? '<i class="fas fa-sign-in-alt"></i> ENTER TERMINAL' : '<i class="fas fa-user-plus"></i> REGISTER PROFILE';
+        document.getElementById('toggle-link').innerText = isLoginMode ? "New user? Create Bio-Profile" : "Existing user? Access Terminal";
+        document.getElementById('auth-msg').innerText = "";
+    }
 
-        if (data.success) {
-            alert("Password reset successful!");
+    async function handleAuth() {
+        const u = document.getElementById('username').value;
+        const p = document.getElementById('password').value;
+        const msg = document.getElementById('auth-msg');
+        if (!u || !p) { msg.style.color = 'var(--neon-red)'; msg.innerText = "Error: Fields cannot be empty."; return; }
+
+        const route = isLoginMode ? '/login' : '/register';
+        try {
+            const res = await fetch(route, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ username: u, password: p }) });
+            const data = await res.json();
+            if (data.success) {
+                if (isLoginMode) {
+                    currentUsername = data.username || u;
+                    document.getElementById('user-name-display').innerHTML = `<i class="fas fa-user-astronaut"></i> ${currentUsername}`;
+                    document.getElementById('auth-overlay').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('auth-overlay').style.display = 'none';
+                        document.getElementById('dashboard').style.display = 'block';
+                        initDashboard();
+                    }, 500);
+                } else { alert("✅ Bio-Profile Registered! Please login."); toggleMode(); }
+            } else { msg.style.color = 'var(--neon-red)'; msg.innerText = data.message || "Access Denied."; }
+        } catch (err) { msg.innerText = "Server Connection Failed."; }
+    }
+
+    function renderMachines() {
+        const container = document.getElementById('machines-container');
+        container.innerHTML = machines.map(machine => `
+            <div class="machine-card">
+                <div class="machine-icon"><i class="${machine.icon}"></i></div>
+                <div class="machine-name">${machine.name}</div>
+                <div class="unit-buttons">
+                    ${Array(machine.units).fill(0).map((_, i) => `
+                        <button class="unit-btn ${machine.busyUnits.includes(i+1) ? 'unit-busy' : 'unit-available'}"
+                                onclick="toggleMachineUnit(${machine.id}, ${i+1})"
+                                ${machine.busyUnits.includes(i+1) ? 'disabled' : ''}>
+                            Unit ${i+1}<br>${machine.busyUnits.includes(i+1) ? '🔴 BUSY' : '🟢 AVAILABLE'}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function toggleMachineUnit(machineId, unitNumber) {
+        const machine = machines.find(m => m.id === machineId);
+        if (machine.busyUnits.includes(unitNumber)) machine.busyUnits = machine.busyUnits.filter(u => u !== unitNumber);
+        else machine.busyUnits.push(unitNumber);
+        renderMachines();
+        updateMachineStatus(machineId, unitNumber, machine.busyUnits.includes(unitNumber) ? 'busy' : 'available');
+    }
+
+    async function updateMachineStatus(machineId, unitNumber, status) {
+        try { await fetch('/update-machine', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ id: machineId, unit: unitNumber, status }) }); }
+        catch (err) { console.error('Failed to update machine status'); }
+    }
+
+    function toggleForgot() {
+        const section = document.getElementById('forgot-section');
+        section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
+
+    async function requestResetToken() {
+        const username = document.getElementById('fp-username').value;
+        if (!username) { alert("Enter username"); return; }
+        try {
+            const res = await fetch('/forgot-password', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ username }) });
+            const data = await res.json();
+            if (data.success) alert("Your reset token: " + data.token);
+            else alert("User not found");
+        } catch { alert("Server error"); }
+    }
+
+    async function resetPassword() {
+        const token = document.getElementById('fp-token').value;
+        const newPassword = document.getElementById('fp-newpass').value;
+        if (!token || !newPassword) { alert("Fill all fields"); return; }
+        try {
+            const res = await fetch('/reset-password', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ token, newPassword }) });
+            const data = await res.json();
+            if (data.success) alert("Password reset successful!");
+            else alert("Invalid or expired token");
+        } catch { alert("Server error"); }
+    }
+
+    function calculateBMI(weight, height) {
+        if (!weight || !height) return null;
+        return (weight / ((height / 100) ** 2)).toFixed(1);
+    }
+
+    function getBMIStatus(bmi) {
+        if (bmi < 18.5) return { text: "Underweight", class: "bmi-underweight", advice: "Focus on nutrient-rich foods and strength training to build healthy mass." };
+        if (bmi < 25) return { text: "Normal", class: "bmi-normal", advice: "Great job! Maintain with balanced diet and regular exercise." };
+        if (bmi < 30) return { text: "Overweight", class: "bmi-overweight", advice: "Combine cardio and strength training. Focus on portion control." };
+        return { text: "Obese", class: "bmi-obese", advice: "Consult a trainer. Start with low-impact exercises and gradual changes." };
+    }
+
+    function updateBMIDisplay(weight, height) {
+        const bmi = calculateBMI(weight, height);
+        const bmiValueElem = document.getElementById('bmi-value');
+        const bmiStatusElem = document.getElementById('bmi-status');
+        if (bmi) {
+            bmiValueElem.innerText = bmi;
+            const status = getBMIStatus(bmi);
+            bmiStatusElem.innerHTML = `<strong>${status.text}</strong><br><small>${status.advice}</small>`;
+            bmiStatusElem.className = `bmi-indicator ${status.class}`;
+            bmiStatusElem.style.display = 'block';
         } else {
-            alert("Invalid or expired token");
+            bmiValueElem.innerText = '--';
+            bmiStatusElem.style.display = 'none';
         }
-    } catch {
-        alert("Server error");
     }
-}
-        // BMI Calculation and Status
-        function calculateBMI(weight, height) {
-            if (!weight || !height) return null;
-            const heightInMeters = height / 100;
-            return (weight / (heightInMeters * heightInMeters)).toFixed(1);
+
+    async function updateProfile() {
+        const weight = parseFloat(document.getElementById('weight-input').value);
+        const height = parseFloat(document.getElementById('height-input').value);
+        const fitness_goal = document.getElementById('goal-input').value;
+        const msgDiv = document.getElementById('profile-message');
+
+        if (!weight || !height) {
+            msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter both weight and height!';
+            msgDiv.style.color = 'var(--neon-red)'; msgDiv.style.display = 'block';
+            setTimeout(() => msgDiv.style.display = 'none', 3000); return;
+        }
+        if (weight < 20 || weight > 300) {
+            msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a valid weight (20-300 kg)!';
+            msgDiv.style.color = 'var(--neon-red)'; msgDiv.style.display = 'block';
+            setTimeout(() => msgDiv.style.display = 'none', 3000); return;
+        }
+        if (height < 100 || height > 250) {
+            msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a valid height (100-250 cm)!';
+            msgDiv.style.color = 'var(--neon-red)'; msgDiv.style.display = 'block';
+            setTimeout(() => msgDiv.style.display = 'none', 3000); return;
         }
 
-        function getBMIStatus(bmi) {
-            if (bmi < 18.5) return { text: "Underweight", class: "bmi-underweight", advice: "Focus on nutrient-rich foods and strength training to build healthy mass." };
-            if (bmi < 25) return { text: "Normal", class: "bmi-normal", advice: "Great job! Maintain with balanced diet and regular exercise." };
-            if (bmi < 30) return { text: "Overweight", class: "bmi-overweight", advice: "Combine cardio and strength training. Focus on portion control." };
-            return { text: "Obese", class: "bmi-obese", advice: "Consult a trainer. Start with low-impact exercises and gradual changes." };
-        }
+        msgDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving profile...';
+        msgDiv.style.color = 'var(--neon-blue)'; msgDiv.style.display = 'block';
 
-        function updateBMIDisplay(weight, height) {
-            const bmi = calculateBMI(weight, height);
-            const bmiValueElem = document.getElementById('bmi-value');
-            const bmiStatusElem = document.getElementById('bmi-status');
-            
-            if (bmi) {
-                bmiValueElem.innerText = bmi;
-                const status = getBMIStatus(bmi);
-                bmiStatusElem.innerHTML = `<strong>${status.text}</strong><br><small>${status.advice}</small>`;
-                bmiStatusElem.className = `bmi-indicator ${status.class}`;
-                bmiStatusElem.style.display = 'block';
-            } else {
-                bmiValueElem.innerText = '--';
-                bmiStatusElem.style.display = 'none';
-            }
+        try {
+            const res = await fetch('/update-profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ weight, height, fitness_goal, diet_preference: currentDietPref }) });
+            const data = await res.json();
+            if (res.ok && data.success) {
+                updateBMIDisplay(weight, height);
+                msgDiv.innerHTML = '<i class="fas fa-check-circle"></i> Profile updated! Click GET MY PLAN for your diet recommendation.';
+                msgDiv.style.color = 'var(--neon-green)';
+                setTimeout(() => msgDiv.style.display = 'none', 4000);
+                await loadUserProfile();
+            } else throw new Error(data.error || 'Update failed');
+        } catch (err) {
+            msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed to save profile: ' + err.message;
+            msgDiv.style.color = 'var(--neon-red)';
+            setTimeout(() => msgDiv.style.display = 'none', 5000);
         }
+    }
 
-        async function updateProfile() {
-            const weight = parseFloat(document.getElementById('weight-input').value);
-            const height = parseFloat(document.getElementById('height-input').value);
-            const fitness_goal = document.getElementById('goal-input').value;
-            
-            if (!weight || !height) {
-                const msgDiv = document.getElementById('profile-message');
-                msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter both weight and height!';
-                msgDiv.style.color = 'var(--neon-red)';
-                msgDiv.style.display = 'block';
-                setTimeout(() => msgDiv.style.display = 'none', 3000);
+    // ===== DIET RECOMMENDATION FUNCTIONS =====
+
+    async function loadDietRecommendation() {
+        const btn = document.getElementById('diet-refresh-btn');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        btn.disabled = true;
+
+        document.getElementById('diet-empty-state').style.display = 'none';
+        document.getElementById('diet-loading').style.display = 'block';
+        document.getElementById('diet-content').style.display = 'none';
+
+        try {
+            const res = await fetch('/diet-recommendation');
+            if (res.status === 401) {
+                document.getElementById('diet-loading').style.display = 'none';
+                document.getElementById('diet-empty-state').style.display = 'block';
+                document.getElementById('diet-empty-state').innerHTML = '<i class="fas fa-lock"></i><p>Please log in to view your diet plan.</p>';
                 return;
             }
-            
-            try {
-                const res = await fetch('/update-profile', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ weight, height, fitness_goal })
-                });
-                
-                if (res.ok) {
-                    updateBMIDisplay(weight, height);
-                    const msgDiv = document.getElementById('profile-message');
-                    msgDiv.innerHTML = '<i class="fas fa-check-circle"></i> Profile updated successfully!';
-                    msgDiv.style.color = 'var(--neon-green)';
-                    msgDiv.style.display = 'block';
-                    setTimeout(() => msgDiv.style.display = 'none', 3000);
-                    
-                    await loadUserProfile();
-                } else {
-                    throw new Error('Update failed');
-                }
-            } catch (err) {
-                alert('Failed to update profile');
-            }
-        }
+            const data = await res.json();
 
-        function displayFoodResult(containerId, data) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = `
-                <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px;">
-                    <strong style="color: var(--neon-blue);">${data.name}</strong><br>
-                    <span class="badge badge-success">${data.calories} kcal</span><br>
-                    <small>P:${data.protein}g | C:${data.carbs}g | F:${data.fat}g</small>
+            if (!data.success) {
+                document.getElementById('diet-loading').style.display = 'none';
+                document.getElementById('diet-empty-state').style.display = 'block';
+                document.getElementById('diet-empty-state').innerHTML = '<i class="fas fa-user-edit"></i><p>Please complete your profile (weight + height) first, then click GET MY PLAN.</p>';
+                return;
+            }
+
+            currentDietData = data;
+            renderDietContent(data);
+
+        } catch (err) {
+            document.getElementById('diet-loading').style.display = 'none';
+            document.getElementById('diet-empty-state').style.display = 'block';
+            document.getElementById('diet-empty-state').innerHTML = '<i class="fas fa-exclamation-triangle"></i><p>Failed to load diet plan. Please try again.</p>';
+        } finally {
+            btn.innerHTML = '<i class="fas fa-sync-alt"></i> REFRESH PLAN';
+            btn.disabled = false;
+        }
+    }
+
+    function renderDietContent(data) {
+        document.getElementById('diet-loading').style.display = 'none';
+        document.getElementById('diet-content').style.display = 'block';
+
+        const bmiColorClass = {
+            underweight: 'bmi-badge-underweight',
+            normal: 'bmi-badge-normal',
+            overweight: 'bmi-badge-overweight',
+            obese: 'bmi-badge-obese'
+        }[data.bmiCategory] || 'bmi-badge-normal';
+
+        const bmiEmoji = { underweight: '⚠️', normal: '✅', overweight: '🔶', obese: '🔴' }[data.bmiCategory] || '📊';
+
+        // Stats grid
+        document.getElementById('diet-stats-grid').innerHTML = `
+            <div class="diet-stat">
+                <div class="diet-stat-label">Goal</div>
+                <div style="font-family:'Orbitron',sans-serif; font-size:0.9rem; color:var(--neon-orange);">${data.goalLabel}</div>
+            </div>
+            <div class="diet-stat">
+                <div class="diet-stat-label">Daily Calories</div>
+                <div class="diet-stat-value calories">${data.calorieTarget}<small style="font-size:0.7rem;color:#888"> kcal</small></div>
+            </div>
+            <div class="diet-stat">
+                <div class="diet-stat-label">Protein</div>
+                <div class="diet-stat-value protein">${data.macros.protein}<small style="font-size:0.7rem;color:#888">g</small></div>
+            </div>
+            <div class="diet-stat">
+                <div class="diet-stat-label">Carbs</div>
+                <div class="diet-stat-value carbs">${data.macros.carbs}<small style="font-size:0.7rem;color:#888">g</small></div>
+            </div>
+            <div class="diet-stat">
+                <div class="diet-stat-label">Fat</div>
+                <div class="diet-stat-value fat">${data.macros.fat}<small style="font-size:0.7rem;color:#888">g</small></div>
+            </div>
+            <div class="diet-stat">
+                <div class="diet-stat-label">Water / Day</div>
+                <div class="diet-stat-value water">${data.waterRecommendation}<small style="font-size:0.7rem;color:#888">L</small></div>
+            </div>
+            <div class="diet-stat" style="grid-column: span 1;">
+                <div class="diet-stat-label">BMI Status</div>
+                <div class="${bmiColorClass} bmi-badge" style="margin-top:6px;">${bmiEmoji} ${data.bmiCategory.charAt(0).toUpperCase() + data.bmiCategory.slice(1)}</div>
+            </div>
+            <div class="diet-stat">
+                <div class="diet-stat-label">TDEE</div>
+                <div class="diet-stat-value tdee">${data.tdee}<small style="font-size:0.7rem;color:#888"> kcal</small></div>
+            </div>
+        `;
+
+        // Macro bars
+        const totalMacroCalories = data.macros.protein * 4 + data.macros.carbs * 4 + data.macros.fat * 9;
+        const pPct = Math.round((data.macros.protein * 4 / totalMacroCalories) * 100);
+        const cPct = Math.round((data.macros.carbs * 4 / totalMacroCalories) * 100);
+        const fPct = Math.round((data.macros.fat * 9 / totalMacroCalories) * 100);
+
+        document.getElementById('diet-macro-bars').innerHTML = `
+            <div class="macro-bar-wrap">
+                <div class="macro-bar-label"><span>💪 Protein — ${data.macros.protein}g</span><span>${pPct}%</span></div>
+                <div class="macro-bar"><div class="macro-bar-fill protein" style="width:${pPct}%"></div></div>
+            </div>
+            <div class="macro-bar-wrap">
+                <div class="macro-bar-label"><span>🍞 Carbohydrates — ${data.macros.carbs}g</span><span>${cPct}%</span></div>
+                <div class="macro-bar"><div class="macro-bar-fill carbs" style="width:${cPct}%"></div></div>
+            </div>
+            <div class="macro-bar-wrap">
+                <div class="macro-bar-label"><span>🥑 Fat — ${data.macros.fat}g</span><span>${fPct}%</span></div>
+                <div class="macro-bar"><div class="macro-bar-fill fat" style="width:${fPct}%"></div></div>
+            </div>
+        `;
+
+        // Render default tab
+        activeMealTab = 'breakfast';
+        renderMealOptions(data.meals.breakfast);
+
+        // Tips
+        document.getElementById('diet-tips-grid').innerHTML = data.tips.map(tip => `
+            <div class="tip-item">
+                <i class="fas fa-check-circle tip-icon"></i>
+                <span>${tip}</span>
+            </div>
+        `).join('');
+    }
+
+    function switchMealTab(tab, btn) {
+        activeMealTab = tab;
+        document.querySelectorAll('.meal-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        if (currentDietData && currentDietData.meals[tab]) {
+            renderMealOptions(currentDietData.meals[tab]);
+        }
+    }
+
+    function renderMealOptions(meals) {
+        document.getElementById('meal-options-container').innerHTML = meals.map((meal, i) => `
+            <div class="meal-option-card ${i === 0 ? 'selected' : ''}" onclick="selectMealCard(this)">
+                <div class="meal-emoji">${meal.emoji}</div>
+                <div class="meal-name">${meal.name}</div>
+                <div class="meal-macros">
+                    <span class="meal-macro-pill pill-cal">🔥 ${meal.calories} kcal</span>
+                    <span class="meal-macro-pill pill-p">P: ${meal.protein}g</span>
+                    <span class="meal-macro-pill pill-c">C: ${meal.carbs}g</span>
+                    <span class="meal-macro-pill pill-f">F: ${meal.fat}g</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function selectMealCard(el) {
+        document.querySelectorAll('.meal-option-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    // ===== END DIET FUNCTIONS =====
+
+    function displayFoodResult(containerId, data) {
+        document.getElementById(containerId).innerHTML = `
+            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px; border:1px solid rgba(0,242,255,0.15);">
+                <strong style="color: var(--neon-blue); font-size:1rem;">${data.name}</strong>
+                <div style="margin-top:6px; font-size:0.75rem; color:#666;">per 100g</div>
+                <span class="badge badge-success" style="margin-top:4px;">${data.calories} kcal</span><br>
+                <small style="color:#aaa;">P: <b style="color:#ff6b6b">${data.protein}g</b> &nbsp;|&nbsp; C: <b style="color:#ffd700">${data.carbs}g</b> &nbsp;|&nbsp; F: <b style="color:#a8e6cf">${data.fat}g</b></small>
+            </div>
+        `;
+    }
+
+    function determineWinner(food1, food2) {
+        let score1 = 0, score2 = 0;
+        const reasons = [];
+        if (food1.calories < food2.calories) { score1++; reasons.push(`${food1.name} has ${food2.calories - food1.calories} fewer calories`); }
+        else if (food2.calories < food1.calories) { score2++; reasons.push(`${food2.name} has ${food1.calories - food2.calories} fewer calories`); }
+        if (food1.protein > food2.protein) { score1++; reasons.push(`${food1.name} has ${(food1.protein - food2.protein).toFixed(1)}g more protein`); }
+        else if (food2.protein > food1.protein) { score2++; reasons.push(`${food2.name} has ${(food2.protein - food1.protein).toFixed(1)}g more protein`); }
+        if (food1.fat < food2.fat) { score1++; reasons.push(`${food1.name} has ${(food2.fat - food1.fat).toFixed(1)}g less fat`); }
+        else if (food2.fat < food1.fat) { score2++; reasons.push(`${food2.name} has ${(food1.fat - food2.fat).toFixed(1)}g less fat`); }
+        if (food1.carbs < food2.carbs) { score1++; reasons.push(`${food1.name} has ${(food2.carbs - food1.carbs).toFixed(1)}g fewer carbs`); }
+        else if (food2.carbs < food1.carbs) { score2++; reasons.push(`${food2.name} has ${(food1.carbs - food2.carbs).toFixed(1)}g fewer carbs`); }
+        const winner = score1 > score2 ? food1 : food2;
+        return { name: winner.name, reason: reasons.filter(r => r.includes(winner.name)).join('. ') || 'Better overall nutritional profile' };
+    }
+
+    async function compareFoods() {
+        const food1 = document.getElementById('food1').value.trim();
+        const food2 = document.getElementById('food2').value.trim();
+        if (!food1 || !food2) { alert('Please enter both food items to compare!'); return; }
+
+        const resultDiv = document.getElementById('comparison-result');
+        document.getElementById('food1-result').innerHTML = '';
+        document.getElementById('food2-result').innerHTML = '';
+        resultDiv.innerHTML = '<div style="text-align:center; padding:20px;"><i class="fas fa-spinner fa-spin" style="color:var(--neon-blue); font-size:1.5rem;"></i><br><small style="color:#888">Fetching nutritional data...</small></div>';
+
+        try {
+            const [res1, res2] = await Promise.all([
+                fetch(`/nutrition/${encodeURIComponent(food1)}`),
+                fetch(`/nutrition/${encodeURIComponent(food2)}`)
+            ]);
+            const data1 = await res1.json();
+            const data2 = await res2.json();
+
+            // Handle not-found
+            if (data1.success === false) {
+                resultDiv.innerHTML = `<div style="text-align:center; padding:15px; color:var(--neon-red);"><i class="fas fa-exclamation-circle"></i> ${data1.message}</div>`;
+                return;
+            }
+            if (data2.success === false) {
+                resultDiv.innerHTML = `<div style="text-align:center; padding:15px; color:var(--neon-red);"><i class="fas fa-exclamation-circle"></i> ${data2.message}</div>`;
+                return;
+            }
+
+            displayFoodResult('food1-result', data1);
+            displayFoodResult('food2-result', data2);
+
+            const winner = determineWinner(data1, data2);
+            const per = data1.per || '100g';
+
+            resultDiv.innerHTML = `
+                <div style="text-align: center;">
+                    <div class="badge badge-success" style="font-size: 1.1rem; margin-bottom: 10px;">
+                        <i class="fas fa-crown"></i> WINNER: ${winner.name}
+                    </div>
+                    <div style="margin-top: 10px; color:#aaa; font-size:0.8rem;">Values per ${per}</div>
+                    <div style="margin-top: 12px;"><strong>Why it's better:</strong><br>${winner.reason}</div>
+                    <div style="margin-top: 15px; text-align: left; background:rgba(0,0,0,0.3); padding:15px; border-radius:12px; font-size:0.95rem; line-height:2;">
+                        <strong>Detailed Comparison (per ${per}):</strong><br>
+                        🔥 Calories: <b>${data1.calories}</b> vs <b>${data2.calories}</b> — ${data1.calories < data2.calories ? `<span style="color:var(--neon-green)">${data1.name} wins ✅</span>` : data2.calories < data1.calories ? `<span style="color:var(--neon-green)">${data2.name} wins ✅</span>` : `<span style="color:#aaa">Tie</span>`}<br>
+                        💪 Protein: <b>${data1.protein}g</b> vs <b>${data2.protein}g</b> — ${data1.protein > data2.protein ? `<span style="color:var(--neon-green)">${data1.name} wins ✅</span>` : data2.protein > data1.protein ? `<span style="color:var(--neon-green)">${data2.name} wins ✅</span>` : `<span style="color:#aaa">Tie</span>`}<br>
+                        🍞 Carbs: <b>${data1.carbs}g</b> vs <b>${data2.carbs}g</b> — ${data1.carbs < data2.carbs ? `<span style="color:var(--neon-green)">${data1.name} wins ✅</span>` : data2.carbs < data1.carbs ? `<span style="color:var(--neon-green)">${data2.name} wins ✅</span>` : `<span style="color:#aaa">Tie</span>`}<br>
+                        🥑 Fat: <b>${data1.fat}g</b> vs <b>${data2.fat}g</b> — ${data1.fat < data2.fat ? `<span style="color:var(--neon-green)">${data1.name} wins ✅</span>` : data2.fat < data1.fat ? `<span style="color:var(--neon-green)">${data2.name} wins ✅</span>` : `<span style="color:#aaa">Tie</span>`}
+                    </div>
                 </div>
             `;
+        } catch (err) {
+            resultDiv.innerHTML = '<div style="text-align:center; padding:15px; color:var(--neon-red);"><i class="fas fa-exclamation-circle"></i> Error comparing foods. Please try again.</div>';
         }
+    }
 
-        function determineWinner(food1, food2) {
-            let score1 = 0, score2 = 0;
-            const reasons = [];
-            
-            if (food1.calories < food2.calories) {
-                score1++;
-                reasons.push(`${food1.name} has ${food2.calories - food1.calories} fewer calories`);
-            } else if (food2.calories < food1.calories) {
-                score2++;
-                reasons.push(`${food2.name} has ${food1.calories - food2.calories} fewer calories`);
-            }
-            
-            if (food1.protein > food2.protein) {
-                score1++;
-                reasons.push(`${food1.name} has ${(food1.protein - food2.protein).toFixed(1)}g more protein`);
-            } else if (food2.protein > food1.protein) {
-                score2++;
-                reasons.push(`${food2.name} has ${(food2.protein - food1.protein).toFixed(1)}g more protein`);
-            }
-            
-            if (food1.fat < food2.fat) {
-                score1++;
-                reasons.push(`${food1.name} has ${(food2.fat - food1.fat).toFixed(1)}g less fat`);
-            } else if (food2.fat < food1.fat) {
-                score2++;
-                reasons.push(`${food2.name} has ${(food1.fat - food2.fat).toFixed(1)}g less fat`);
-            }
-            
-            if (food1.carbs < food2.carbs) {
-                score1++;
-                reasons.push(`${food1.name} has ${(food2.carbs - food1.carbs).toFixed(1)}g fewer carbs`);
-            } else if (food2.carbs < food1.carbs) {
-                score2++;
-                reasons.push(`${food2.name} has ${(food1.carbs - food2.carbs).toFixed(1)}g fewer carbs`);
-            }
-            
-            const winner = score1 > score2 ? food1 : score2 > score1 ? food2 : food1;
-            const winnerReason = reasons.filter(r => r.includes(winner.name)).join('. ') || 'Better overall nutritional profile';
-            
-            return { name: winner.name, reason: winnerReason };
-        }
+    async function initDashboard() {
+        renderMachines();
+        await loadDashboard();
+        await loadUserProfile();
+        await loadLeaderboard();
+        await loadClasses();
+        await loadWaterToday();
+        resetTimer();
+        socket = io();
+        socket.on('new_message', (data) => {
+            const chatDiv = document.getElementById('chat-messages');
+            chatDiv.innerHTML += `<div class="chatbot-message"><strong style="color: var(--neon-blue);">${data.username}:</strong> ${data.message} <small style="color: #888;">${data.time}</small></div>`;
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        });
+    }
 
-        async function compareFoods() {
-            const food1 = document.getElementById('food1').value;
-            const food2 = document.getElementById('food2').value;
-            
-            if (!food1 || !food2) {
-                alert('Please enter both food items to compare!');
-                return;
-            }
-            
-            const resultDiv = document.getElementById('comparison-result');
-            resultDiv.innerHTML = '<div style="text-align: center;"><i class="fas fa-spinner fa-spin"></i> Analyzing nutritional values...</div>';
-            
-            try {
-                const [res1, res2] = await Promise.all([
-                    fetch(`/nutrition/${encodeURIComponent(food1)}`),
-                    fetch(`/nutrition/${encodeURIComponent(food2)}`)
-                ]);
-                
-                const data1 = await res1.json();
-                const data2 = await res2.json();
-                
-                if (data1.name && data2.name) {
-                    displayFoodResult('food1-result', data1);
-                    displayFoodResult('food2-result', data2);
-                    
-                    const winner = determineWinner(data1, data2);
-                    resultDiv.innerHTML = `
-                        <div style="text-align: center;">
-                            <div class="badge badge-success" style="font-size: 1.2rem; margin-bottom: 10px;">
-                                <i class="fas fa-crown"></i> WINNER: ${winner.name}
-                            </div>
-                            <div style="margin-top: 15px;">
-                                <strong>Why it's better:</strong><br>
-                                ${winner.reason}
-                            </div>
-                            <div style="margin-top: 15px; text-align: left;">
-                                <strong>Detailed Comparison:</strong><br><br>
-                                🔥 Calories: ${data1.calories} vs ${data2.calories} ${data1.calories < data2.calories ? '✅' : '❌'}<br>
-                                💪 Protein: ${data1.protein}g vs ${data2.protein}g ${data1.protein > data2.protein ? '✅' : '❌'}<br>
-                                🍞 Carbs: ${data1.carbs}g vs ${data2.carbs}g ${data1.carbs < data2.carbs ? '✅' : '❌'}<br>
-                                🥑 Fat: ${data1.fat}g vs ${data2.fat}g ${data1.fat < data2.fat ? '✅' : '❌'}<br>
-                                📊 Score: ${data1.grade || 'B'} vs ${data2.grade || 'B'}
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    resultDiv.innerHTML = '<div class="badge" style="background: rgba(255,49,49,0.2); padding: 15px;">⚠️ Could not fetch nutritional data for one or both foods.</div>';
-                }
-            } catch (err) {
-                resultDiv.innerHTML = '<div class="badge" style="background: rgba(255,49,49,0.2); padding: 15px;">❌ Error comparing foods. Please try again.</div>';
-            }
-        }
-
-        async function initDashboard() {
-            renderMachines();
-            await loadDashboard();
-            await loadUserProfile();
-            await loadLeaderboard();
-            await loadClasses();
-            await loadWaterToday();
-            resetTimer();
-            
-            socket = io();
-            socket.on('new_message', (data) => {
-                const chatDiv = document.getElementById('chat-messages');
-                chatDiv.innerHTML += `<div class="chatbot-message"><strong style="color: var(--neon-blue);">${data.username}:</strong> ${data.message} <small style="color: #888;">${data.time}</small></div>`;
-                chatDiv.scrollTop = chatDiv.scrollHeight;
-            });
-        }
-
-        async function loadDashboard() {
+    async function loadDashboard() {
+        try {
             const res = await fetch('/activity-history');
             const history = await res.json();
-            Chart.defaults.color = '#fff';
+
+            Chart.defaults.color = '#aaa';
             const ctx = document.getElementById('perfChart').getContext('2d');
+
+            const hasData = history.some(h => h.total_calories > 0);
+
             new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: history.map(h => h.date),
-                    datasets: [{ 
-                        label: '🔥 Calories Burned', 
-                        data: history.map(h => h.total_calories), 
-                        backgroundColor: 'rgba(0, 242, 255, 0.2)',
-                        borderColor: '#00f2ff',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4
-                    }]
+                    datasets: [
+                        {
+                            label: '🔥 Calories Burned',
+                            data: history.map(h => h.total_calories),
+                            backgroundColor: history.map(h =>
+                                h.total_calories > 0
+                                    ? 'rgba(0, 242, 255, 0.5)'
+                                    : 'rgba(255,255,255,0.05)'
+                            ),
+                            borderColor: history.map(h =>
+                                h.total_calories > 0 ? '#00f2ff' : 'rgba(255,255,255,0.1)'
+                            ),
+                            borderWidth: 2,
+                            borderRadius: 8,
+                        },
+                        {
+                            label: '📈 Trend',
+                            data: history.map(h => h.total_calories),
+                            type: 'line',
+                            borderColor: 'rgba(57,255,20,0.6)',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#39ff14',
+                            pointRadius: 4,
+                            fill: false,
+                            tension: 0.4,
+                        }
+                    ]
                 },
-                options: { 
-                    responsive: true, 
+                options: {
+                    responsive: true,
                     maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
                     plugins: {
-                        legend: { labels: { color: '#fff' } }
+                        legend: { labels: { color: '#aaa', font: { family: 'Rajdhani', size: 13 } } },
+                        tooltip: {
+                            backgroundColor: 'rgba(5,6,10,0.95)',
+                            borderColor: '#00f2ff',
+                            borderWidth: 1,
+                            titleColor: '#00f2ff',
+                            bodyColor: '#fff',
+                            callbacks: {
+                                label: ctx => ctx.raw === 0
+                                    ? ' Rest day'
+                                    : ` ${ctx.raw} kcal burned`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#aaa', font: { family: 'Rajdhani', size: 11 } }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: {
+                                color: '#aaa',
+                                font: { family: 'Rajdhani', size: 11 },
+                                callback: v => v === 0 ? '0' : `${v} kcal`
+                            }
+                        }
                     }
                 }
             });
-        }
 
-        async function loadUserProfile() {
-            try {
-                const res = await fetch('/user-profile');
-                const data = await res.json();
-                document.getElementById('level-value').innerText = data.level || 1;
-                document.getElementById('points-value').innerText = data.total_points || 0;
-                
-                if (data.weight) {
-                    document.getElementById('weight-input').value = data.weight;
-                }
-                if (data.height) {
-                    document.getElementById('height-input').value = data.height;
-                }
-                if (data.fitness_goal) {
-                    document.getElementById('goal-input').value = data.fitness_goal;
-                }
-                
-                updateBMIDisplay(data.weight, data.height);
-            } catch (err) {
-                console.error('Failed to load profile');
+            // Show "no workouts yet" hint if all zeros
+            if (!hasData) {
+                const parent = document.getElementById('perfChart').parentElement;
+                const hint = document.createElement('div');
+                hint.style.cssText = 'position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; color:#444; pointer-events:none;';
+                hint.innerHTML = '<i class="fas fa-dumbbell" style="font-size:2rem; margin-bottom:8px; display:block;"></i><span style="font-size:0.9rem;">Log a workout to see your performance chart</span>';
+                parent.style.position = 'relative';
+                parent.appendChild(hint);
             }
+        } catch (err) {
+            console.error('Failed to load dashboard chart', err);
         }
+    }
 
-        async function generateWorkout() {
-            const res = await fetch('/workout-plans');
+    async function loadUserProfile() {
+        try {
+            const res = await fetch('/user-profile');
+            const data = await res.json();
+            document.getElementById('level-value').innerText = data.level || 1;
+            document.getElementById('points-value').innerText = data.total_points || 0;
+            if (data.weight) document.getElementById('weight-input').value = data.weight;
+            if (data.height) document.getElementById('height-input').value = data.height;
+            if (data.fitness_goal) document.getElementById('goal-input').value = data.fitness_goal;
+            // Restore veg/non-veg toggle from saved preference
+            if (data.diet_preference) {
+                setDietPref(data.diet_preference);
+            }
+            updateBMIDisplay(data.weight, data.height);
+        } catch (err) { console.error('Failed to load profile'); }
+    }
+
+    async function generateWorkout() {
+        const rawGoal = document.getElementById('workout-goal').value;
+        // Strip emoji prefix for query
+        const goal = rawGoal.replace(/^[\p{Emoji}\s]+/u, '').trim();
+
+        const btn = document.querySelector('#workout-plan').previousElementSibling.querySelector('button');
+
+        try {
+            const res = await fetch(`/workout-plans?goal=${encodeURIComponent(goal.toLowerCase())}`);
+            if (!res.ok) throw new Error('Failed to fetch');
             const plans = await res.json();
-            
+
             if (plans && plans.length > 0) {
                 const plan = plans[0];
                 document.getElementById('workout-name').innerText = plan.name;
                 document.getElementById('workout-exercises').innerText = plan.exercises;
+
+                // Show duration + calorie estimate badge under name
+                const existingBadge = document.getElementById('workout-meta');
+                if (existingBadge) existingBadge.remove();
+                const meta = document.createElement('div');
+                meta.id = 'workout-meta';
+                meta.style.cssText = 'margin: 8px 0 12px; display:flex; gap:10px; flex-wrap:wrap;';
+                meta.innerHTML = `
+                    <span class="badge badge-success"><i class="fas fa-clock"></i> ${plan.duration} min</span>
+                    <span class="badge" style="background:rgba(255,140,0,0.2);color:#ff8c00;border:1px solid #ff8c00;">
+                        <i class="fas fa-fire"></i> ~${plan.duration * plan.caloriesPerMin} kcal
+                    </span>`;
+                document.getElementById('workout-name').after(meta);
+
                 document.getElementById('workout-plan').style.display = 'block';
             }
+        } catch (err) {
+            alert('Failed to generate workout. Please try again.');
+        }
+    }
+
+    async function startWorkout() {
+        const workoutName = document.getElementById('workout-name').innerText;
+        if (!workoutName) { alert('Please generate a workout first!'); return; }
+
+        // Read duration from badge if available, else default 30
+        const metaBadges = document.querySelectorAll('#workout-meta .badge');
+        let duration = 30, caloriesBurned = 240;
+        if (metaBadges.length >= 2) {
+            const durationText = metaBadges[0].innerText.replace(/[^0-9]/g, '');
+            const calText = metaBadges[1].innerText.replace(/[^0-9]/g, '');
+            if (durationText) duration = parseInt(durationText);
+            if (calText) caloriesBurned = parseInt(calText);
         }
 
-        async function startWorkout() {
-            const workoutName = document.getElementById('workout-name').innerText;
-            const duration = 30;
-            const caloriesBurned = Math.floor(duration * 8);
-            
-            try {
-                const res = await fetch('/log-workout', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        workout_name: workoutName,
-                        duration: duration,
-                        calories_burned: caloriesBurned
-                    })
-                });
-                
-                const data = await res.json();
-                if (data.levelUp) {
-                    alert(`🎉 LEVEL UP! You're now level ${data.newLevel}! 🎉`);
-                    document.getElementById('level-value').classList.add('level-up');
-                    setTimeout(() => document.getElementById('level-value').classList.remove('level-up'), 500);
-                } else {
-                    alert(`✅ Workout logged! +${data.pointsEarned || 10} points`);
-                }
-                loadUserProfile();
-                loadLeaderboard();
-            } catch (err) {
-                alert('Failed to log workout');
-            }
-        }
+        try {
+            const res = await fetch('/log-workout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ workout_name: workoutName, duration, calories_burned: caloriesBurned })
+            });
+            const data = await res.json();
+            alert(`✅ Workout started & logged!\n+${data.pointsEarned || 10} points earned\n🔥 ${caloriesBurned} kcal target`);
+            loadUserProfile(); loadLeaderboard();
+        } catch (err) { alert('Failed to log workout'); }
+    }
 
-        async function loadLeaderboard() {
-            try {
-                const res = await fetch('/leaderboard');
-                const leaders = await res.json();
-                const listDiv = document.getElementById('leaderboard-list');
-                
-                if (!leaders || leaders.length === 0) {
-                    listDiv.innerHTML = '<p style="text-align: center;">No leaders yet. Be the first!</p>';
-                    return;
-                }
-                
-                listDiv.innerHTML = leaders.map((leader, index) => `
-                    <div style="display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <span>
-                            ${index === 0 ? '🏆' : index === 1 ? '🥈' : index === 2 ? '🥉' : '📊'} 
-                            ${index + 1}. ${leader.username}
-                        </span>
-                        <span style="color: var(--neon-blue);">Level ${leader.level} | ${leader.total_points} pts</span>
+    async function loadLeaderboard() {
+        try {
+            const res = await fetch('/leaderboard');
+            const leaders = await res.json();
+            const listDiv = document.getElementById('leaderboard-list');
+            if (!leaders || leaders.length === 0) { listDiv.innerHTML = '<p style="text-align: center;">No leaders yet. Be the first!</p>'; return; }
+            listDiv.innerHTML = leaders.map((leader, index) => `
+                <div style="display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span>${index === 0 ? '🏆' : index === 1 ? '🥈' : index === 2 ? '🥉' : '📊'} ${index + 1}. ${leader.username}</span>
+                    <span style="color: var(--neon-blue);">Level ${leader.level} | ${leader.total_points} pts</span>
+                </div>
+            `).join('');
+        } catch (err) { console.error('Failed to load leaderboard'); }
+    }
+
+    async function loadClasses() {
+        try {
+            const res = await fetch('/classes');
+            const classes = await res.json();
+            const classDiv = document.getElementById('class-list');
+            if (!classes || classes.length === 0) { classDiv.innerHTML = '<p>No classes scheduled</p>'; return; }
+            classDiv.innerHTML = classes.map(cls => `
+                <div style="display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div>
+                        <strong style="color: var(--neon-blue);">${cls.name}</strong><br>
+                        <small><i class="fas fa-chalkboard-teacher"></i> ${cls.trainer} • <i class="fas fa-clock"></i> ${cls.time}</small>
                     </div>
-                `).join('');
-            } catch (err) {
-                console.error('Failed to load leaderboard');
-            }
-        }
-
-        async function loadClasses() {
-            try {
-                const res = await fetch('/classes');
-                const classes = await res.json();
-                const classDiv = document.getElementById('class-list');
-                
-                if (!classes || classes.length === 0) {
-                    classDiv.innerHTML = '<p>No classes scheduled</p>';
-                    return;
-                }
-                
-                classDiv.innerHTML = classes.map(cls => `
-                    <div style="display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <div>
-                            <strong style="color: var(--neon-blue);">${cls.name}</strong><br>
-                            <small><i class="fas fa-chalkboard-teacher"></i> ${cls.trainer} • <i class="fas fa-clock"></i> ${cls.time}</small>
-                        </div>
-                        <div>
-                            <span class="badge badge-success">${cls.booked}/${cls.capacity}</span>
-                            <button class="btn" style="margin-left: 10px; padding: 5px 12px; background: var(--neon-blue); color: #000;" onclick="bookClass(${cls.id})">Book</button>
-                        </div>
+                    <div>
+                        <span class="badge badge-success">${cls.booked}/${cls.capacity}</span>
+                        <button class="btn" style="margin-left: 10px; padding: 5px 12px; background: var(--neon-blue); color: #000;" onclick="bookClass(${cls.id})">Book</button>
                     </div>
-                `).join('');
-            } catch (err) {
-                console.error('Failed to load classes');
-            }
-        }
+                </div>
+            `).join('');
+        } catch (err) { console.error('Failed to load classes'); }
+    }
 
-        async function bookClass(classId) {
-            try {
-                await fetch('/book-class', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ class_id: classId })
-                });
-                alert('✅ Class booked successfully!');
-                loadClasses();
-            } catch (err) {
-                alert('Booking failed');
-            }
-        }
+    async function bookClass(classId) {
+        try {
+            await fetch('/book-class', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ class_id: classId }) });
+            alert('✅ Class booked successfully!');
+            loadClasses();
+        } catch (err) { alert('Booking failed'); }
+    }
 
-        async function addWater() {
-            waterCount++;
+    async function addWater() {
+        waterCount++;
+        document.getElementById('water').innerHTML = `${waterCount} <small>GL</small>`;
+        document.getElementById('water-progress').value = waterCount;
+        if (waterCount >= 8) alert('🎉 Amazing! You\'ve reached your daily water goal!');
+        try {
+            await fetch('/update-water', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ amount: 0.25 }) });
+            await loadWaterToday();
+        } catch (err) { console.error('Failed to save water intake'); }
+    }
+
+    async function loadWaterToday() {
+        try {
+            const res = await fetch('/water-today');
+            const data = await res.json();
+            document.getElementById('water-today').innerHTML = `${(data.total || 0).toFixed(1)}L`;
+            waterCount = Math.floor(data.total / 0.25);
             document.getElementById('water').innerHTML = `${waterCount} <small>GL</small>`;
             document.getElementById('water-progress').value = waterCount;
-            
-            if (waterCount >= 8) {
-                alert('🎉 Amazing! You\'ve reached your daily water goal! Stay hydrated!');
-            }
-            
-            try {
-                await fetch('/update-water', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ amount: 0.25 })
-                });
-                await loadWaterToday();
-            } catch (err) {
-                console.error('Failed to save water intake');
-            }
-        }
+        } catch (err) { console.error('Failed to load water data'); }
+    }
 
-        async function loadWaterToday() {
-            try {
-                const res = await fetch('/water-today');
-                const data = await res.json();
-                const totalLiters = (data.total || 0).toFixed(1);
-                document.getElementById('water-today').innerHTML = `${totalLiters}L`;
-                waterCount = Math.floor(data.total / 0.25);
-                document.getElementById('water').innerHTML = `${waterCount} <small>GL</small>`;
-                document.getElementById('water-progress').value = waterCount;
-            } catch (err) {
-                console.error('Failed to load water data');
-            }
-        }
-
-        // AI Chatbot Functions
-        async function sendChatMessage() {
-            const message = document.getElementById('chat-input').value;
-            if (!message) return;
-            
-            // Add user message to chat
-            const chatDiv = document.getElementById('chat-messages');
-            chatDiv.innerHTML += `<div class="chatbot-message user-message">
-                <div class="message-content">${escapeHtml(message)}</div>
-            </div>`;
+    async function sendChatMessage() {
+        const message = document.getElementById('chat-input').value;
+        if (!message) return;
+        const chatDiv = document.getElementById('chat-messages');
+        chatDiv.innerHTML += `<div class="chatbot-message user-message"><div class="message-content">${escapeHtml(message)}</div></div>`;
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+        document.getElementById('chat-input').value = '';
+        const typingIndicator = document.getElementById('typing-indicator');
+        typingIndicator.style.display = 'block';
+        try {
+            const res = await fetch('/chatbot', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message }) });
+            const data = await res.json();
+            typingIndicator.style.display = 'none';
+            chatDiv.innerHTML += `<div class="chatbot-message bot-message"><div class="message-content">${escapeHtml(data.response)}</div></div>`;
             chatDiv.scrollTop = chatDiv.scrollHeight;
-            
-            document.getElementById('chat-input').value = '';
-            
-            // Show typing indicator
-            const typingIndicator = document.getElementById('typing-indicator');
-            typingIndicator.style.display = 'block';
-            
-            try {
-                const res = await fetch('/chatbot', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message })
-                });
-                
-                const data = await res.json();
-                
-                // Hide typing indicator
-                typingIndicator.style.display = 'none';
-                
-                // Add bot response
-                chatDiv.innerHTML += `<div class="chatbot-message bot-message">
-                    <div class="message-content">${escapeHtml(data.response)}</div>
-                </div>`;
-                chatDiv.scrollTop = chatDiv.scrollHeight;
-            } catch (err) {
-                typingIndicator.style.display = 'none';
-                chatDiv.innerHTML += `<div class="chatbot-message bot-message">
-                    <div class="message-content">Sorry, I'm having trouble connecting. Please try again.</div>
-                </div>`;
-                chatDiv.scrollTop = chatDiv.scrollHeight;
-            }
+        } catch (err) {
+            typingIndicator.style.display = 'none';
+            chatDiv.innerHTML += `<div class="chatbot-message bot-message"><div class="message-content">Sorry, I'm having trouble connecting. Please try again.</div></div>`;
         }
-        
-        function handleChatKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendChatMessage();
-            }
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+    }
 
-        // Timer Functions
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timerSeconds / 60);
-            const seconds = timerSeconds % 60;
-            const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            document.getElementById('timer-display').innerText = display;
-            
-            if (timerRunning) {
-                document.getElementById('timer-display').classList.add('timer-running');
-            } else {
-                document.getElementById('timer-display').classList.remove('timer-running');
-            }
-        }
+    function handleChatKeyPress(event) { if (event.key === 'Enter') sendChatMessage(); }
 
-        function startTimer() {
-            if (timerRunning) return;
-            if (timerSeconds <= 0) {
-                alert('Please select a timer duration first!');
-                return;
-            }
-            timerRunning = true;
-            timerInterval = setInterval(() => {
-                if (timerSeconds > 0) {
-                    timerSeconds--;
-                    updateTimerDisplay();
-                }
-                if (timerSeconds === 0) {
-                    pauseTimer();
-                    alert('🎉 Workout complete! Great job! 🎉');
-                    
-                    // Auto-log the workout when timer completes
-                    const workoutName = document.getElementById('workout-name').innerText || 'Timer Workout';
-                    const duration = parseInt(document.getElementById('timer-preset').value) / 60;
-                    const caloriesBurned = Math.floor(duration * 8);
-                    
-                    fetch('/log-workout', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            workout_name: workoutName,
-                            duration: duration,
-                            calories_burned: caloriesBurned
-                        })
-                    }).then(() => {
-                        loadUserProfile();
-                        loadLeaderboard();
-                    }).catch(err => console.error('Failed to log workout:', err));
-                }
-            }, 1000);
-        }
-async function updateProfile() {
-    const weight = parseFloat(document.getElementById('weight-input').value);
-    const height = parseFloat(document.getElementById('height-input').value);
-    const fitness_goal = document.getElementById('goal-input').value;
-    
-    const msgDiv = document.getElementById('profile-message');
-    
-    if (!weight || !height) {
-        msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter both weight and height!';
-        msgDiv.style.color = 'var(--neon-red)';
-        msgDiv.style.display = 'block';
-        setTimeout(() => msgDiv.style.display = 'none', 3000);
-        return;
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
-    
-    if (weight < 20 || weight > 300) {
-        msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a valid weight (20-300 kg)!';
-        msgDiv.style.color = 'var(--neon-red)';
-        msgDiv.style.display = 'block';
-        setTimeout(() => msgDiv.style.display = 'none', 3000);
-        return;
-    }
-    
-    if (height < 100 || height > 250) {
-        msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please enter a valid height (100-250 cm)!';
-        msgDiv.style.color = 'var(--neon-red)';
-        msgDiv.style.display = 'block';
-        setTimeout(() => msgDiv.style.display = 'none', 3000);
-        return;
-    }
-    
-    msgDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving profile...';
-    msgDiv.style.color = 'var(--neon-blue)';
-    msgDiv.style.display = 'block';
-    
-    try {
-        const res = await fetch('/update-profile', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ weight, height, fitness_goal })
-        });
-        
-        const data = await res.json();
-        
-        if (res.ok && data.success) {
-            updateBMIDisplay(weight, height);
-            msgDiv.innerHTML = '<i class="fas fa-check-circle"></i> Profile updated successfully!';
-            msgDiv.style.color = 'var(--neon-green)';
-            setTimeout(() => msgDiv.style.display = 'none', 3000);
-            await loadUserProfile();
-        } else {
-            throw new Error(data.error || 'Update failed');
-        }
-    } catch (err) {
-        console.error('Profile update error:', err);
-        msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed to save profile: ' + err.message;
-        msgDiv.style.color = 'var(--neon-red)';
-        setTimeout(() => msgDiv.style.display = 'none', 5000);
-    }
-}
-        function pauseTimer() {
-            clearInterval(timerInterval);
-            timerRunning = false;
-            updateTimerDisplay();
-        }
 
-        function resetTimer() {
-            pauseTimer();
-            timerSeconds = parseInt(document.getElementById('timer-preset').value);
-            updateTimerDisplay();
-        }
-    </script>
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timerSeconds / 60);
+        const seconds = timerSeconds % 60;
+        document.getElementById('timer-display').innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        if (timerRunning) document.getElementById('timer-display').classList.add('timer-running');
+        else document.getElementById('timer-display').classList.remove('timer-running');
+    }
+
+    function startTimer() {
+        if (timerRunning || timerSeconds <= 0) return;
+        timerRunning = true;
+        timerInterval = setInterval(() => {
+            if (timerSeconds > 0) { timerSeconds--; updateTimerDisplay(); }
+            if (timerSeconds === 0) {
+                pauseTimer();
+                alert('🎉 Workout complete! Great job! 🎉');
+                const workoutName = document.getElementById('workout-name').innerText || 'Timer Workout';
+                const duration = parseInt(document.getElementById('timer-preset').value) / 60;
+                fetch('/log-workout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ workout_name: workoutName, duration, calories_burned: Math.floor(duration * 8) }) })
+                    .then(() => { loadUserProfile(); loadLeaderboard(); })
+                    .catch(err => console.error('Failed to log workout:', err));
+            }
+        }, 1000);
+    }
+
+    function pauseTimer() { clearInterval(timerInterval); timerRunning = false; updateTimerDisplay(); }
+    function resetTimer() { pauseTimer(); timerSeconds = parseInt(document.getElementById('timer-preset').value); updateTimerDisplay(); }
+</script>
 </body>
 </html>
