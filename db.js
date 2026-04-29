@@ -13,4 +13,4 @@ pool.connect((err) => {
     else console.log('✅ Database Connected on Port 5000');
 }); 
 
-module.exports = pool;
+module.exports = pool;   
